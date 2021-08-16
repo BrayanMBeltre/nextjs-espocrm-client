@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect } from "react";
+import Header from "../components/Header";
 
-export default function Home() {
+export default function Contacts() {
   const payload = {
     new: "Account",
     name: "From JAVADOC",
@@ -10,7 +11,7 @@ export default function Home() {
 
   const postUser = async () => {
     try {
-      const { data } = await axios.get("/api/espocrm/Account", payload);
+      const { data } = await axios.get("/api/espocrm/Contact", payload);
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -22,13 +23,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className=" ">
+    <div className="">
+      <Header title="Cont" />
       <div className="flex justify-between">
         <div>
-          <h4 className="text-sm font-bold text-indigo-600">Hi User,</h4>
-          <h1 className="text-4xl font-bold text-indigo-900 mt-">
-            Welcome to EspoCRM!
-          </h1>
+          <h1 className="text-4xl font-bold text-indigo-900 mt-">Contacts</h1>
         </div>
         <div>
           <div className="flex items-center border rounded-lg bg-white w-max py-2 px-4 space-x-3">

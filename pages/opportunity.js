@@ -1,33 +1,10 @@
-import axios from "axios";
-import { useEffect } from "react";
-
-export default function Home() {
-  const payload = {
-    new: "Account",
-    name: "From JAVADOC",
-    type: "Customer",
-  };
-
-  const postUser = async () => {
-    try {
-      const { data } = await axios.get("/api/espocrm/Account", payload);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    postUser();
-  }, []);
-
+export default function Opportunities() {
   return (
-    <div className=" ">
+    <div className="">
       <div className="flex justify-between">
         <div>
-          <h4 className="text-sm font-bold text-indigo-600">Hi User,</h4>
           <h1 className="text-4xl font-bold text-indigo-900 mt-">
-            Welcome to EspoCRM!
+            Opportunities
           </h1>
         </div>
         <div>
