@@ -1,4 +1,4 @@
-const Client = require("../../../../lib/espocrm-api-client");
+const Client = require("lib/espocrm-api-client");
 
 const espocrmHost = process.env.ESPOCRM_HOST;
 const espocrmAPIkey = process.env.ESPOCRM_API_KEY;
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await client.request(method, route, payload);
-    res.send(response);
+    res.status(200).json(response);
   } catch (error) {
     console.log(error.statusCode, error.statusMessage);
     res.status(error.statusCode).send(error.statusMessage);

@@ -33,31 +33,31 @@ export function Sidebar() {
         </li>
         <li>
           <NavLink href="/accounts">
-            <FaUsers className="h-5 w-5 mr-4 " />
-            Accounts
+            <FaUsers className="h-5 w-5 mr-4" />
+            Account
           </NavLink>
         </li>
         <li>
           <NavLink href="/contact">
-            <MdContacts className="h-5 w-5 mr-4 " />
+            <MdContacts className="h-5 w-5 mr-4" />
             Contacts
           </NavLink>
         </li>
         <li>
           <NavLink href="/lead">
-            <FaUserGraduate className="h-5 w-5 mr-4 " />
+            <FaUserGraduate className="h-5 w-5 mr-4" />
             Leads
           </NavLink>
         </li>
         <li>
           <NavLink href="/opportunitie">
-            <FaCommentsDollar className="h-5 w-5 mr-4 " />
+            <FaCommentsDollar className="h-5 w-5 mr-4" />
             Opportunities
           </NavLink>
         </li>
         <li>
           <NavLink href="/case">
-            <FaBriefcase className="h-5 w-5 mr-4 " />
+            <FaBriefcase className="h-5 w-5 mr-4" />
             Cases
           </NavLink>
         </li>
@@ -66,7 +66,7 @@ export function Sidebar() {
       <div className="flex mt-4 space-x-4 items-center border-t-2">
         <div className="px-4 mt-4">
           <NavLink href="/logout">
-            <FaSignOutAlt className="h-5 w-5 mr-4 " />
+            <FaSignOutAlt className="h-5 w-5 mr-4" />
             Logout
           </NavLink>
         </div>
