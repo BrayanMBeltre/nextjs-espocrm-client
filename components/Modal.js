@@ -1,6 +1,6 @@
-import Modal from "react-modal";
+import * as ReactModal from "react-modal";
 
-Modal.setAppElement("body");
+ReactModal.setAppElement("body");
 
 // modal styles needed for clean modal
 const style = {
@@ -22,15 +22,15 @@ const style = {
   },
 };
 
-export default function Login({ isOpen, setIsOpen, children }) {
+export function Modal({ isOpen, setIsOpen, children }) {
   return (
-    <Modal
+    <ReactModal
       isOpen={isOpen}
       style={style}
       onRequestClose={() => setIsOpen()}
-      contentLabel="Login"
+      contentLabel="login"
     >
       {children}
-    </Modal>
+    </ReactModal>
   );
 }

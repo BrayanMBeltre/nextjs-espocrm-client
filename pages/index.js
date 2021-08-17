@@ -1,24 +1,12 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { accountService } from "services";
 
 export default function Home() {
-  const payload = {
-    new: "Account",
-    name: "From JAVADOC",
-    type: "Customer",
-  };
-
-  const postUser = async () => {
-    try {
-      const { data } = await axios.get("/api/espocrm/Account", payload);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    postUser();
+    accountService.getAll().then((x) => {
+      console.log(x);
+    });
   }, []);
 
   return (

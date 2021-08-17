@@ -1,15 +1,10 @@
 import axios from "axios";
+import { Link } from "components/Link";
 import { useEffect, useMemo } from "react";
 import { FaEdit, FaSortDown, FaSortUp, FaTrash } from "react-icons/fa";
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
 
-export default function AccountTable2({
-  data,
-  filter,
-  deleteAccount,
-  setAccountToEdit,
-  setModalIsOpen,
-}) {
+export function Table({ data, filter, deleteAccount }) {
   const COLUMNS = [
     {
       Header: "Name",
@@ -31,7 +26,11 @@ export default function AccountTable2({
       accessor: "type",
       Cell: ({ value }) => (
         <div className="text-xs">
-          <span className="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">
+          <span
+            className={`px-2 py-1 font-semibold leading-tight text-green-700 ${
+              value ? "bg-green-100 animate-spin" : ""
+            } rounded-sm`}
+          >
             {value}
           </span>
         </div>
@@ -43,22 +42,18 @@ export default function AccountTable2({
     },
     {
       Header: "Actions",
-      Cell: ({ row }) => (
+      accessor: "id",
+      Cell: ({ value }) => (
         <div className="flex place-content-around">
+          <Link href={`accounts/edit/${value}`}>
+            <FaEdit className=" w-4 h-4 hover:text-yellow-600 transition-all duration-200" />
+          </Link>
           <button
             onClick={() => {
-              setAccountToEdit(row.original);
-              setModalIsOpen(true);
+              deleteAccount(value);
             }}
           >
-            <FaEdit className=" w-4 h-4" />
-          </button>
-          <button
-            onClick={() => {
-              deleteAccount(row.original.id);
-            }}
-          >
-            <FaTrash className=" w-4 h-4" />
+            <FaTrash className=" w-4 h-4 hover:text-red-600 transition-all duration-200" />
           </button>
         </div>
       ),

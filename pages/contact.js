@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect } from "react";
-import Header from "../components/Header";
 
 export default function Contacts() {
   const payload = {
@@ -24,7 +23,6 @@ export default function Contacts() {
 
   return (
     <div className="">
-      <Header title="Cont" />
       <div className="flex justify-between">
         <div>
           <h1 className="text-4xl font-bold text-indigo-900 mt-">Contacts</h1>

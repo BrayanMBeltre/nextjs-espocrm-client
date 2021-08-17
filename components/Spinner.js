@@ -1,4 +1,4 @@
-export default function Loading({ className, size = "16", color = "indigo" }) {
+export function Spinner({ className, size = "16", color = "indigo" }) {
   return (
     <div className="h-full flex items-center justify-center">
       <div

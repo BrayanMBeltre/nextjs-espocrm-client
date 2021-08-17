@@ -1,21 +1,14 @@
-import { useForm } from "react-hook-form";
+import { Button } from "components/Button";
+import { Spinner } from "components/Spinner";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Loading from "./Loading";
-import Button from "./Button";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import { accountService } from "services";
 
-export default function AccountForm2({
-  title,
-  createAccount,
-  setModalIsOpen,
-  modalIsOpen,
-  isLoading,
-  setAccountToEdit,
-  accountToEdit,
-  editAccount,
-}) {
+export function CreateOrUpdate({ account }) {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -24,28 +17,45 @@ export default function AccountForm2({
   } = useForm();
 
   useEffect(() => {
-    if (!modalIsOpen) {
-      setAccountToEdit(undefined);
-    }
-
-    if (accountToEdit) {
+    if (account) {
       const fields = ["name", "website", "type", "billingAddressCountry"];
-      fields.forEach((field) => setValue(field, accountToEdit[field]));
+      fields.forEach((field) => setValue(field, account[field]));
     }
-  }, [accountToEdit, modalIsOpen, setAccountToEdit, setValue]);
+  }, [account, setValue]);
+
+  const createAccount = async (data) => {
+    try {
+      setIsLoading(true);
+      await accountService.create(data);
+      setIsLoading(false);
+      toast.success("Account Created!");
+      router.push(".");
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.response.data);
+    }
+  };
+
+  const updateAccount = async (id, data) => {
+    try {
+      setIsLoading(true);
+      await accountService.update(id, data);
+      setIsLoading(false);
+      toast.success("Account Updated!");
+      router.push("..");
+    } catch (error) {
+      setIsLoading(false);
+      toast.error(error.response.data);
+    }
+  };
+
+  const onsubmit = (data) => {
+    account ? updateAccount(account.id, data) : createAccount(data);
+  };
 
   return (
     <div className="px-6 py-8 rounded-md bg-white">
-      <div className="text-2xl border-b-2 pb-2 mb-8">{title}</div>
-      <form
-        onSubmit={handleSubmit((data) => {
-          if (editAccount) {
-            editAccount(accountToEdit.id, data);
-          } else {
-            createAccount(data);
-          }
-        })}
-      >
+      <form onSubmit={handleSubmit(onsubmit)}>
         <div className="relative z-0 w-full mb-8">
           <input
             type="text"
@@ -140,28 +150,25 @@ export default function AccountForm2({
 
         <div className=" flex gap-4 items-center justify-center">
           <Button
+            type="button"
             onClick={() => {
-              setModalIsOpen(false);
+              router.back();
             }}
-            className="w-40 h-12"
-            color="red"
+            disabled={isLoading && true}
+            color={isLoading ? "gray" : "red"}
           >
-            Close
+            Cancel
           </Button>
 
-          <button
-            type="submit"
-            disabled={isLoading && true}
-            className="flex items-center justify-center w-40 h-12 px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10"
-          >
+          <Button type="submit" disabled={isLoading && true}>
             {isLoading ? (
-              <Loading size="6" color="white" />
-            ) : accountToEdit ? (
+              <Spinner size="6" color="indigo" />
+            ) : account ? (
               "Update"
             ) : (
               "Create"
             )}
-          </button>
+          </Button>
         </div>
       </form>
     </div>

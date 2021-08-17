@@ -1,7 +1,6 @@
-import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-export default function GlobalFilter({ filter, setFilter }) {
+export function GlobalFilter({ filter, setFilter }) {
   return (
     <div className="flex">
       <input
