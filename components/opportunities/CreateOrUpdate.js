@@ -183,6 +183,9 @@ export function CreateOrUpdate({ opportunity }) {
               className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
               {...register("stage", { required: true })}
             >
+              <option defaultValue hidden>
+                Choose here
+              </option>
               <option value="Prospecting">Prospecting</option>
               <option value="Qualification">Qualification</option>
               <option value="Proposal">Proposal</option>

@@ -123,6 +123,9 @@ export function CreateOrUpdate({ _case }) {
               className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
               {...register("status", { required: true })}
             >
+              <option defaultValue hidden>
+                Choose here
+              </option>
               <option value="New">New</option>
               <option value="Assigned">Assigned</option>
               <option value="Pending">Pending</option>
@@ -149,6 +152,9 @@ export function CreateOrUpdate({ _case }) {
               className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200"
               {...register("priority", { required: true })}
             >
+              <option defaultValue hidden>
+                Choose here
+              </option>
               <option value="Low">Low</option>
               <option value="Normal">Normal</option>
               <option value="High">High</option>
