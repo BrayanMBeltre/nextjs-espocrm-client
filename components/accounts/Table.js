@@ -13,7 +13,7 @@ export function Table({ data, filter, deleteAccount }) {
     {
       Header: "Website",
       accessor: "website",
-      Cell: ({ value }) => {
+      Cell: function tableWebsite({ value }) {
         return (
           <a href={value} className="text-blue-700 ">
             {value}
@@ -24,17 +24,19 @@ export function Table({ data, filter, deleteAccount }) {
     {
       Header: "Type",
       accessor: "type",
-      Cell: ({ value }) => (
-        <div className="text-xs">
-          <span
-            className={`px-2 py-1 font-semibold leading-tight text-green-700 ${
-              value ? "bg-green-100 animate-spin" : ""
-            } rounded-sm`}
-          >
-            {value}
-          </span>
-        </div>
-      ),
+      Cell: function tableType({ value }) {
+        return (
+          <div className="text-xs">
+            <span
+              className={`px-2 py-1 font-semibold leading-tight text-green-700 ${
+                value ? "bg-green-100 animate-spin" : ""
+              } rounded-sm`}
+            >
+              {value}
+            </span>
+          </div>
+        );
+      },
     },
     {
       Header: "Country",
@@ -43,20 +45,22 @@ export function Table({ data, filter, deleteAccount }) {
     {
       Header: "Actions",
       accessor: "id",
-      Cell: ({ value }) => (
-        <div className="flex place-content-around">
-          <Link href={`accounts/edit/${value}`}>
-            <FaEdit className=" w-4 h-4 hover:text-yellow-600 transition-all duration-200" />
-          </Link>
-          <button
-            onClick={() => {
-              deleteAccount(value);
-            }}
-          >
-            <FaTrash className=" w-4 h-4 hover:text-red-600 transition-all duration-200" />
-          </button>
-        </div>
-      ),
+      Cell: function tableId({ value }) {
+        return (
+          <div className="flex place-content-around">
+            <Link href={`accounts/edit/${value}`}>
+              <FaEdit className=" w-4 h-4 hover:text-yellow-600 transition-all duration-200" />
+            </Link>
+            <button
+              onClick={() => {
+                deleteAccount(value);
+              }}
+            >
+              <FaTrash className=" w-4 h-4 hover:text-red-600 transition-all duration-200" />
+            </button>
+          </div>
+        );
+      },
     },
   ];
 
