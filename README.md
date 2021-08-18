@@ -1,34 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Para correr [espoCR en Docker](https://github.com/espocrm/docker) creamos un archivo docker.compose.yml con lo siguiente:
 
-## Getting Started
+```yaml
+version: "3.1"
 
-First, run the development server:
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - mysql:/var/lib/mysql
 
-```bash
-npm run dev
-# or
-yarn dev
+  espocrm:
+    container_name: espocrm
+    image: espocrm/espocrm
+    environment:
+      ESPOCRM_DATABASE_PASSWORD: example
+      ESPOCRM_ADMIN_USERNAME: admin
+      ESPOCRM_ADMIN_PASSWORD: password
+      ESPOCRM_SITE_URL: "http://localhost:8080"
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - espocrm:/var/www/html
+
+  espocrm-daemon:
+    image: espocrm/espocrm
+    volumes:
+      - espocrm:/var/www/html
+    restart: always
+    entrypoint: docker-daemon.sh
+
+volumes:
+  mysql:
+  espocrm:
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+luego
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+docker-compose up -d
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Nos dirigimos al [localhost:8080](http://localhost:8080)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7bb5f554-0284-43c4-9dea-1f2a4a48566c/Untitled.png)
 
-## Learn More
+Username: admin | Password: password
 
-To learn more about Next.js, take a look at the following resources:
+Creamos un nuevo rol en Administration > Roles > Create new rol
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/90c3b8cb-2436-46fb-acf2-2c97886ef4bb/Untitled.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6df61469-8c65-44b7-952b-0423490b46c7/Untitled.png)
 
-## Deploy on Vercel
+Creamos un API User en Administration > API Users > Create API User
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/83130210-725a-496e-89db-7beec837de4e/Untitled.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Necesitaremos la API Key más adelante
+
+Front-End
+
+creamos un .env.Local ponemos nuestra API Key
+
+```
+ESPOCRM_HOST=http://localhost:8080
+ESPOCRM_API_KEY=edc6809d8a19fbbbdeb24fab824a386d
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+```
+
+Instalamos nuestras dependencias y corremos la app
+
+```bash
+yarn install
+yarn run dev
+```
+
+nos dirigimos a localhost:3000
+
+![dashboard.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a94906fa-632c-447f-b0f0-13ad8a206fe7/dashboard.png)
