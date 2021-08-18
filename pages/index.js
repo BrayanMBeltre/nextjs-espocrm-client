@@ -1,15 +1,6 @@
-import axios from "axios";
 import { Dashboard } from "components";
-import { useEffect } from "react";
-import { accountService } from "services";
 
 export default function Home() {
-  // useEffect(() => {
-  //   accountService.getAll().then((x) => {
-  //     console.log(x);
-  //   });
-  // }, []);
-
   return (
     <div className="container mx-auto p-8 w-full mb-8 overflow-hidden rounded-lg">
       <div>
@@ -21,7 +12,7 @@ export default function Home() {
         </h1>
       </div>
 
-      <div>
+      <div className="p-4">
         <Dashboard />
       </div>
     </div>

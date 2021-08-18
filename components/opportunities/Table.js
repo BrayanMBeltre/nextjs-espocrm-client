@@ -3,33 +3,33 @@ import { useEffect, useMemo } from "react";
 import { FaEdit, FaSortDown, FaSortUp, FaTrash } from "react-icons/fa";
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
 
-export function Table({ data, filter, deleteAccount }) {
+export function Table({ data, filter, deleteOpportunity }) {
   const COLUMNS = [
     {
       Header: "Name",
       accessor: "name",
     },
     {
-      Header: "Website",
-      accessor: "website",
-      Cell: function tableWebsite({ value }) {
-        return (
-          <a href={value} className="text-blue-700 ">
-            {value}
-          </a>
-        );
-      },
+      Header: "Account",
+      accessor: "accountName",
     },
     {
-      Header: "Type",
-      accessor: "type",
-      Cell: function tableType({ value }) {
+      Header: "Stage",
+      accessor: "stage",
+      Cell: function tableStage({ value }) {
+        let color = "indigo";
+
+        value === "Prospecting" ? (color = "green") : "";
+        value === "Qualification" ? (color = "pink") : "";
+        value === "Proposal" ? (color = "yellow") : "";
+        value === "Negotiation" ? (color = "indigo") : "";
+        value === "Closed Won" ? (color = "blue") : "";
+        value === "Closed Lost" ? (color = "red") : "";
+
         return (
           <div className="text-xs">
             <span
-              className={`px-2 py-1 font-semibold leading-tight text-green-700 ${
-                value ? "bg-green-100" : ""
-              } rounded-sm`}
+              className={`px-2 py-1 font-semibold leading-tight text-${color}-700 bg-${color}-100 rounded-sm`}
             >
               {value}
             </span>
@@ -38,8 +38,19 @@ export function Table({ data, filter, deleteAccount }) {
       },
     },
     {
-      Header: "Country",
-      accessor: "billingAddressCountry",
+      Header: "Assigned User",
+      accessor: "assignedUserId",
+    },
+    {
+      Header: "Close Date",
+      accessor: "closeDate",
+    },
+    {
+      Header: "Amount",
+      accessor: "amount",
+      Cell: function tableAmount({ value }) {
+        return <div>${value}</div>;
+      },
     },
     {
       Header: "Actions",
@@ -47,12 +58,12 @@ export function Table({ data, filter, deleteAccount }) {
       Cell: function tableId({ value }) {
         return (
           <div className="flex place-content-around">
-            <Link href={`accounts/edit/${value}`}>
+            <Link href={`opportunities/edit/${value}`}>
               <FaEdit className=" w-4 h-4 hover:text-yellow-600 transition-all duration-200" />
             </Link>
             <button
               onClick={() => {
-                deleteAccount(value);
+                deleteOpportunity(value);
               }}
             >
               <FaTrash className=" w-4 h-4 hover:text-red-600 transition-all duration-200" />

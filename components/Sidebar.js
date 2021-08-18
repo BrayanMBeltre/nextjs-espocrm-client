@@ -16,15 +16,15 @@ export function Sidebar() {
         <h1 className="px-6 text-3xl font-bold text-indigo-600">ESPOCRM</h1>
       </div>
 
-      <div className="my-4 mx-4 flex gap-2 items-center">
-        <FaUserCircle className="w-12 h-12" />
-        <div className="ml-4">
+      <div className="my-4 px-6 flex gap-2 items-center">
+        <FaUserCircle className="w-8 h-8" />
+        <div className="ml-2">
           <div className="font-semibold">Sierra Ferguson</div>
           <div className="text-sm text-gray-400">Admin</div>
         </div>
       </div>
 
-      <ul className="px-6 mt-8 space-y-4">
+      <ul className="px-6 space-y-4">
         <li>
           <NavLink href="/" exact>
             <MdDashboard className="h-5 w-5 mr-4" />
@@ -38,25 +38,25 @@ export function Sidebar() {
           </NavLink>
         </li>
         <li>
-          <NavLink href="/contact">
+          <NavLink href="/contacts">
             <MdContacts className="h-5 w-5 mr-4" />
             Contacts
           </NavLink>
         </li>
         <li>
-          <NavLink href="/lead">
+          <NavLink href="/leads">
             <FaUserGraduate className="h-5 w-5 mr-4" />
             Leads
           </NavLink>
         </li>
         <li>
-          <NavLink href="/opportunitie">
+          <NavLink href="/opportunities">
             <FaCommentsDollar className="h-5 w-5 mr-4" />
             Opportunities
           </NavLink>
         </li>
         <li>
-          <NavLink href="/case">
+          <NavLink href="/cases">
             <FaBriefcase className="h-5 w-5 mr-4" />
             Cases
           </NavLink>

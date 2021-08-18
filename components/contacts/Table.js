@@ -3,43 +3,23 @@ import { useEffect, useMemo } from "react";
 import { FaEdit, FaSortDown, FaSortUp, FaTrash } from "react-icons/fa";
 import { useGlobalFilter, useSortBy, useTable } from "react-table";
 
-export function Table({ data, filter, deleteAccount }) {
+export function Table({ data, filter, deleteContact }) {
   const COLUMNS = [
     {
       Header: "Name",
       accessor: "name",
     },
     {
-      Header: "Website",
-      accessor: "website",
-      Cell: function tableWebsite({ value }) {
-        return (
-          <a href={value} className="text-blue-700 ">
-            {value}
-          </a>
-        );
-      },
+      Header: "Account",
+      accessor: "accountName",
     },
     {
-      Header: "Type",
-      accessor: "type",
-      Cell: function tableType({ value }) {
-        return (
-          <div className="text-xs">
-            <span
-              className={`px-2 py-1 font-semibold leading-tight text-green-700 ${
-                value ? "bg-green-100" : ""
-              } rounded-sm`}
-            >
-              {value}
-            </span>
-          </div>
-        );
-      },
+      Header: "Email",
+      accessor: "emailAddress",
     },
     {
-      Header: "Country",
-      accessor: "billingAddressCountry",
+      Header: "Phone",
+      accessor: "phoneNumber",
     },
     {
       Header: "Actions",
@@ -47,12 +27,12 @@ export function Table({ data, filter, deleteAccount }) {
       Cell: function tableId({ value }) {
         return (
           <div className="flex place-content-around">
-            <Link href={`accounts/edit/${value}`}>
+            <Link href={`contacts/edit/${value}`}>
               <FaEdit className=" w-4 h-4 hover:text-yellow-600 transition-all duration-200" />
             </Link>
             <button
               onClick={() => {
-                deleteAccount(value);
+                deleteContact(value);
               }}
             >
               <FaTrash className=" w-4 h-4 hover:text-red-600 transition-all duration-200" />

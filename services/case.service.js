@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const accountService = {
+export const caseService = {
   getAll,
   getById,
   create,
@@ -9,7 +9,7 @@ export const accountService = {
   count,
 };
 
-const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/espocrm/Account`;
+const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/espocrm/Case`;
 
 async function getAll() {
   const { data } = await axios.get(baseUrl);
