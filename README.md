@@ -48,25 +48,23 @@ docker-compose up -d
 
 Nos dirigimos al [localhost:8080](http://localhost:8080)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7bb5f554-0284-43c4-9dea-1f2a4a48566c/Untitled.png)
+![espo-login](https://raw.githubusercontent.com/BrayanMBeltre/nextjs-espocrm-client/main/pictures/espo-login.png)
 
 Username: admin | Password: password
 
 Creamos un nuevo rol en Administration > Roles > Create new rol
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/90c3b8cb-2436-46fb-acf2-2c97886ef4bb/Untitled.png)
+![espo-administration-menu](https://raw.githubusercontent.com/BrayanMBeltre/nextjs-espocrm-client/main/pictures/espo-administration.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6df61469-8c65-44b7-952b-0423490b46c7/Untitled.png)
+![espo-roles](https://raw.githubusercontent.com/BrayanMBeltre/nextjs-espocrm-client/main/pictures/espo-roles.png)
 
 Creamos un API User en Administration > API Users > Create API User
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/83130210-725a-496e-89db-7beec837de4e/Untitled.png)
-
-Necesitaremos la API Key más adelante
+![espo-apiusers](https://raw.githubusercontent.com/BrayanMBeltre/nextjs-espocrm-client/main/pictures/espo-apiusers.png)
 
 Front-End
 
-creamos un .env.Local ponemos nuestra API Key
+creamos un .env.Local, ponemos nuestra API Key
 
 ```
 ESPOCRM_HOST=http://localhost:8080
@@ -74,13 +72,13 @@ ESPOCRM_API_KEY=edc6809d8a19fbbbdeb24fab824a386d
 NEXT_PUBLIC_API_URL=http://localhost:3000/api
 ```
 
-Instalamos nuestras dependencias y corremos la app
+Instalamos nuestras dependencias, corremos la app
 
 ```bash
 yarn install
 yarn run dev
 ```
 
-nos dirigimos a localhost:3000
+y por ultimo nos dirigimos a localhost:3000
 
-![dashboard.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a94906fa-632c-447f-b0f0-13ad8a206fe7/dashboard.png)
+![dashboard.png](https://raw.githubusercontent.com/BrayanMBeltre/nextjs-espocrm-client/main/pictures/dashboard.png)
