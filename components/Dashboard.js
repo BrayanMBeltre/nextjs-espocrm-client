@@ -5,8 +5,8 @@ import {
   caseService,
   contactService,
   leadService,
+  opportunityService,
 } from "services";
-import { opportunityService } from "services/opportunity.service";
 
 const options = {
   scales: {
@@ -29,6 +29,7 @@ export function Dashboard() {
     const leadsCount = await leadService.count();
     const opportunitiesCount = await opportunityService.count();
     const casesCount = await caseService.count();
+
     setTotalCount([
       accountsCount,
       contactsCount,

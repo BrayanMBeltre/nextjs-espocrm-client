@@ -38,7 +38,6 @@ export default function Index() {
         <Table
           data={contacts.list}
           filter={filter}
-          setFilter={setFilter}
           deleteContact={deleteContact}
         />
       ) : (

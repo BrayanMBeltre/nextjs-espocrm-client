@@ -36,12 +36,7 @@ export default function Index() {
       </div>
 
       {cases ? (
-        <Table
-          data={cases.list}
-          filter={filter}
-          setFilter={setFilter}
-          deleteCase={deleteCase}
-        />
+        <Table data={cases.list} filter={filter} deleteCase={deleteCase} />
       ) : (
         <Spinner />
       )}

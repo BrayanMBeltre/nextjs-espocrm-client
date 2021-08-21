@@ -1,4 +1,4 @@
-const Client = require("../../../../lib/espocrm-api-client");
+import Client from "lib/espocrm-api-client";
 
 const espocrmHost = process.env.ESPOCRM_HOST;
 const espocrmAPIkey = process.env.ESPOCRM_API_KEY;
@@ -6,10 +6,11 @@ const espocrmAPIkey = process.env.ESPOCRM_API_KEY;
 const client = new Client(espocrmHost, espocrmAPIkey);
 
 export default async function handler(req, res) {
-  let {
+  const {
     query: { slug },
     method,
   } = req;
+
   const params = req.body;
 
   try {

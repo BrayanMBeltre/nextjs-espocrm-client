@@ -39,7 +39,6 @@ export default function Index() {
         <Table
           data={opportunities.list}
           filter={filter}
-          setFilter={setFilter}
           deleteOpportunity={deleteOpportunity}
         />
       ) : (

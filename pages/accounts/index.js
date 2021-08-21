@@ -39,7 +39,6 @@ export default function Index() {
         <Table
           data={accounts.list}
           filter={filter}
-          setFilter={setFilter}
           deleteAccount={deleteAccount}
         />
       ) : (

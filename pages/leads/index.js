@@ -36,12 +36,7 @@ export default function Index() {
       </div>
 
       {leads ? (
-        <Table
-          data={leads.list}
-          filter={filter}
-          setFilter={setFilter}
-          deleteLead={deleteLead}
-        />
+        <Table data={leads.list} filter={filter} deleteLead={deleteLead} />
       ) : (
         <Spinner />
       )}
